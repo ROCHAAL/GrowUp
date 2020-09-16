@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, ListView, FlatList } from 'react-native';
+import { View, Text, StyleSheet, ListView, FlatList, Alert } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 
 import Header from './components/Header';
@@ -20,9 +20,13 @@ const App = () => {
   }
 
   const addItem = text => {
-    setItems(prevItems => {
-      return [{id: uuidv4(), text}, ...prevItems];
-    });
+    if(!text) {
+      Alert.alert('Error', 'please enter a task', {text: 'Ok'})
+    } else {
+      setItems(prevItems => {
+        return [{id: uuidv4(), text}, ...prevItems];
+      });
+    }
   }
 
   return (
