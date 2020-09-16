@@ -8,9 +8,6 @@ import AddItem from './components/AddItem';
 
 const App = () => {
   const [items, setItems] = useState([
-      {id: uuidv4(), text: 'Sweep'},
-      {id: uuidv4(), text: 'Mop'},
-      {id: uuidv4(), text: 'Dust'},
   ]);
 
   const deleteItem = (id) => {
