@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, ListView, FlatList } from 'react-native';
+import { v4 as uuidv4 } from 'uuid';
+
 import Header from './components/Header';
 import ListItem from './components/ListItem';
-import { v4 as uuidv4 } from 'uuid';
 import AddItem from './components/AddItem';
 
 const App = () => {
@@ -18,7 +19,7 @@ const App = () => {
     });
   }
 
-  const addItem = (item) => {
+  const addItem = text => {
     setItems(prevItems => {
       return [{id: uuidv4(), text}, ...prevItems];
     });

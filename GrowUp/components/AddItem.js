@@ -1,24 +1,33 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-const AddItem = ({title, addItem}) => {
+const AddItem = ({addItem}) => {
   const [text, setText] = useState('');
-
   const onChange = textValue => setText(textValue);
 
   return (
     <View>
       <TextInput
-        placeholder="Add Task..."
+        placeholder="Add Item..."
         style={styles.input}
         onChangeText={onChange}
+        value={text}
       />
       <TouchableOpacity
         style={styles.button}
-        onPress={() => addItem(text)}>
+        onPress={() => {
+          addItem(text);
+          setText('');
+        }}>
         <Text style={styles.buttonText}>
-          <Icon name="plus" size={20}/> Add task
+          <Icon name="plus" size={20} /> Add Item
         </Text>
       </TouchableOpacity>
     </View>
