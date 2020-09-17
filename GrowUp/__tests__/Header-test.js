@@ -4,7 +4,7 @@
 
 import 'react-native';
 import React from 'react';
-import Header from '../components/header';
+import Header from '../components/Header';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -20,5 +20,5 @@ it('renders correctly', () => {
 
 it('renders header', () => {
   renderer.create(<Header />);
-  expect(title).toBe("GrowUp!");
-})
+  expect(Header.defaultProps.title).toBe("GrowUp!");
+});
