@@ -6,7 +6,7 @@ const ListItem = ({completeItem, item, deleteItem}) => {
   return (
     <TouchableOpacity style={styles.listItem}>
       <View style={styles.listItemView}>
-        <Icon name="complete" size={20} color="firebrick" onPress ={() => completeItem(item.id)}/>
+        <Icon name={(item.completed) ? "check-square" : "square-o"} size={20} color="firebrick" onPress ={() => completeItem(item.id)}/>
         <Text style={(item.completed) ? styles.listItemTextComplete : styles.listItemText}>{item.text}</Text>
         <Icon name="remove" size={20} color="firebrick" onPress ={() => deleteItem(item.id)}/>
       </View>
