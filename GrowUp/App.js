@@ -21,9 +21,20 @@ const App = () => {
       Alert.alert('Error', 'please enter a task', {text: 'Ok'})
     } else {
       setItems(prevItems => {
-        return [{id: uuidv4(), text}, ...prevItems];
+        return [{id: uuidv4(), text, completed: false}, ...prevItems];
       });
     }
+  }
+
+  const completeItem = (id) => {
+    setItems(prevItems => {
+      return prevItems.map(item => {
+        if(id === item.id) {
+          item.completed = !item.completed
+        } 
+        return item;
+      });
+    });
   }
 
   return (
@@ -32,7 +43,7 @@ const App = () => {
       <AddItem addItem={addItem} />
       <FlatList
         data={items}
-        renderItem={({item}) => <ListItem item={item} deleteItem={deleteItem} />}
+        renderItem={({item}) => <ListItem completeItem={completeItem} item={item} deleteItem={deleteItem} />}
       />
     </View>
   );
