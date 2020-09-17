@@ -13,6 +13,11 @@ it('renders correctly', () => {
   renderer.create(<Header />);
 });
 
+it('should match snapshot', () => {
+  const result = renderer.create(<Header />).toJSON();
+  expect(result).toMatchSnapshot();
+});
+
 it('renders header', () => {
   renderer.create(<Header />);
   expect(Header.defaultProps.title).toBe("GrowUp!");

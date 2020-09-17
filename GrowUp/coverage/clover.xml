@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1600359396089" clover="3.2.0">
-  <project timestamp="1600359396089" name="All files">
+<coverage generated="1600359736388" clover="3.2.0">
+  <project timestamp="1600359736388" name="All files">
     <metrics statements="53" coveredstatements="36" conditionals="8" coveredconditionals="0" methods="17" coveredmethods="3" elements="78" coveredelements="39" complexity="0" loc="53" ncloc="53" packages="2" files="4" classes="4"/>
     <package name="GrowUp">
       <metrics statements="26" coveredstatements="14" conditionals="4" coveredconditionals="0" methods="10" coveredmethods="1"/>
@@ -41,10 +41,10 @@
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="13" count="4" type="stmt"/>
-        <line num="15" count="4" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
         <line num="38" count="2" type="stmt"/>
@@ -54,8 +54,8 @@
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
-        <line num="4" count="4" type="stmt"/>
-        <line num="5" count="4" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
         <line num="12" count="2" type="stmt"/>
         <line num="16" count="2" type="stmt"/>
         <line num="29" count="2" type="stmt"/>

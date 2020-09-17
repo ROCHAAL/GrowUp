@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "green",
+      "height": 60,
+      "padding": 15,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 23,
+        "textAlign": "center",
+      }
+    }
+  >
+    GrowUp!
+  </Text>
+</View>
+`;

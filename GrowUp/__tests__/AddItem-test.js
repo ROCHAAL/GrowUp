@@ -13,10 +13,15 @@ it('renders correctly', () => {
   renderer.create(<AddItem />);
 });
 
+it('should match snapshot', () => {
+  const result = renderer.create(<AddItem />).toJSON();
+  expect(result).toMatchSnapshot();
+});
+
 it('has placeholder text', () => {
   renderer.create(<AddItem />);
   const wrapper = '<View />'
-  expect(wrapper.find('AddItem').at(0).props().placeholder).toEqual('Add Item...')
+  expect(wrapper.find('AddItem').at(0).props().placeholder).toEqual('Add Task...')
 });
 
 //it('can add an item', () =>{
