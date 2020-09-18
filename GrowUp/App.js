@@ -15,6 +15,19 @@ const App = () => {
 
   const Stack = createStackNavigator();
 
+  function HomeScreen() {
+    return (
+      <View style={styles.container}>
+         <Header />
+         <AddItem addItem={addItem} />
+         <FlatList
+           data={items}
+           renderItem={({item}) => <ListItem completeItem={completeItem} item={item} deleteItem={deleteItem} />}
+         />
+      </View>
+    )
+  }
+
   const deleteItem = (id) => {
     setItems(prevItems => {
       return prevItems.filter(item => item.id != id);
@@ -43,16 +56,22 @@ const App = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <AddItem addItem={addItem} />
-      <FlatList
-        data={items}
-        renderItem={({item}) => <ListItem completeItem={completeItem} item={item} deleteItem={deleteItem} />}
-      />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+    // <View style={styles.container}>
+    //   <Header />
+    //   <AddItem addItem={addItem} />
+    //   <FlatList
+    //     data={items}
+    //     renderItem={({item}) => <ListItem completeItem={completeItem} item={item} deleteItem={deleteItem} />}
+    //   />
+    // </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
