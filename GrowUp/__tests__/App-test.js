@@ -22,10 +22,10 @@ it('should match snapshot', () => {
   expect(result).toMatchSnapshot();
 });
 
-it('can add an item', () =>{
-  const rendered = mount(<App />);
-  console.log(rendered);
-  console.log(rendered.instance());
-  const task = rendered.instance().addItem("sweep");
-  expect();
-})
+// it('can add an item', () =>{
+//   const rendered = mount(<App />);
+//   console.log(rendered);
+//   console.log(rendered.instance());
+//   const task = rendered.instance().addItem("sweep");
+//   expect();
+// })
