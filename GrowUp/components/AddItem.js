@@ -14,8 +14,8 @@ const AddItem = ({addItem}) => {
 
   return (
     <View>
-      <TextInput
-        placeholder="Add Item..."
+      <TextInput testID='test-placeholder'
+        placeholder='Add Task...'
         style={styles.input}
         onChangeText={onChange}
         value={text}
