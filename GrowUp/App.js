@@ -9,6 +9,7 @@ import Header from './components/Header';
 import ListItem from './components/ListItem';
 import AddItem from './components/AddItem';
 import HomeScreen from './HomeScreen';
+import TaskScreen from './TaskScreen';
 
 const App = () => {
 
@@ -18,6 +19,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Task" component={TaskScreen} />
       </Stack.Navigator>
     </NavigationContainer>
     // <View style={styles.container}>

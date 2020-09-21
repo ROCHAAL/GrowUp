@@ -1,16 +1,14 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, ListView, FlatList, Alert, Button } from 'react-native';
+import { View, Text, StyleSheet, ListView, FlatList, Alert } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Header from './components/Header';
 import ListItem from './components/ListItem';
 import AddItem from './components/AddItem';
-import TaskScreen from './TaskScreen';
 
-const HomeScreen = () => {
-  const navigation = useNavigation()
+const TaskScreen = () => {
 
   const [items, setItems] = useState([
   ]);
@@ -23,7 +21,7 @@ const HomeScreen = () => {
 
   const addItem = text => {
     if(!text) {
-      Alert.alert('Error', 'THIS HAS CHANGED', {text: 'Ok'})
+      Alert.alert('Error', 'please enter a task', {text: 'Ok'})
     } else {
       setItems(prevItems => {
         return [{id: uuidv4(), text, completed: false}, ...prevItems];
@@ -57,14 +55,10 @@ const HomeScreen = () => {
          data={items}
          renderItem={({item}) => <ListItem completeItem={completeItem} item={item} deleteItem={deleteItem} />}
        />
-       <Button
-        title="Go to Tasks"
-        onPress={() => navigation.navigate('Task')}
-      />
     </View>
   )
 
 
 }
 
-export default HomeScreen;
+export default TaskScreen;
