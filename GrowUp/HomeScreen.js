@@ -10,7 +10,6 @@ import AddItem from './components/AddItem';
 import TaskScreen from './TaskScreen';
 
 const HomeScreen = ({ route, navigation}) => {
-  console.log(route.params.completedItems)
 
   const styles = StyleSheet.create({
     container: {
@@ -31,18 +30,27 @@ const HomeScreen = ({ route, navigation}) => {
 
   React.useEffect(() => {
     if (route.params?.completedItems) {
-      // Post updated, do something with `route.params.post`
-      // For example, send the post to the server
+      console.log(gif)
     }
   }, [route.params?.completedItems]);
 
-  
+  let gif = route.params.completedItems()
+
+  const gifFunction = () => {
+    if (route.params.completedItems() === 2) {
+      let gif = `./gifs/grow_up_20_progress.gif`
+    } else {
+      let gif = `./gifs/grow_up_0_progress.gif`
+    }
+    return gif
+  }
+
 
   return (
     <View style={styles.container}>
        <Header />
-       <Image source={require('./gifs/grow_up_10_progress.gif')} />
-       <Text>{route.params.completedItems()}</Text>
+       <Image source={require({gifFunction})} />
+       <Text>{gif}</Text>
        <Button
         title="Go to Tasks"
         onPress={() => navigation.navigate('Task')}
