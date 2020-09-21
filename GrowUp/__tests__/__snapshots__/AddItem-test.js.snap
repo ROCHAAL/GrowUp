@@ -5,7 +5,7 @@ exports[`should match snapshot 1`] = `
   <TextInput
     allowFontScaling={true}
     onChangeText={[Function]}
-    placeholder="Add Item..."
+    placeholder="Add Task..."
     rejectResponderTermination={true}
     style={
       Object {
@@ -14,6 +14,7 @@ exports[`should match snapshot 1`] = `
         "padding": 8,
       }
     }
+    testID="test-placeholder"
     underlineColorAndroid="transparent"
     value=""
   />
