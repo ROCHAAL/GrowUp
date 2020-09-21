@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, ListView, FlatList, Alert } from 'react-native';
+import { View, Text, StyleSheet, ListView, FlatList, Alert, Button } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Header from './components/Header';
@@ -9,6 +9,7 @@ import ListItem from './components/ListItem';
 import AddItem from './components/AddItem';
 
 const TaskScreen = () => {
+  const navigation = useNavigation()
 
   const [items, setItems] = useState([
   ]);
@@ -39,6 +40,15 @@ const TaskScreen = () => {
       });
     });
   }
+  const completedItems = () => {
+    let completedItemsCounter = 0
+    items.map((item) => {
+      if (item.completed === true) {
+        completedItemsCounter += 1
+      }
+    });
+    return completedItemsCounter
+  };
 
   const styles = StyleSheet.create({
     container: {
@@ -55,10 +65,12 @@ const TaskScreen = () => {
          data={items}
          renderItem={({item}) => <ListItem completeItem={completeItem} item={item} deleteItem={deleteItem} />}
        />
+       <Button
+        title="Go Home"
+        onPress={() => navigation.navigate('Home', {completedItems: completedItems})}
+      />
     </View>
   )
-
-
 }
 
 export default TaskScreen;
