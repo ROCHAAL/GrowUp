@@ -4,6 +4,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import Header from './components/Header';
+import ListItem from './components/ListItem';
+import AddItem from './components/AddItem';
 
 const HomeScreen = () => {
 
@@ -36,6 +39,13 @@ const HomeScreen = () => {
       });
     });
   }
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingTop: 60,
+    },
+  });
 
   return (
     <View style={styles.container}>
@@ -48,12 +58,7 @@ const HomeScreen = () => {
     </View>
   )
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: 60,
-    },
-  });
+
 }
 
 export default HomeScreen;
