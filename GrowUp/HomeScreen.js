@@ -36,6 +36,8 @@ const HomeScreen = ({ route, navigation}) => {
     }
   }, [route.params?.completedItems]);
 
+  
+
   return (
     <View style={styles.container}>
        <Header />
