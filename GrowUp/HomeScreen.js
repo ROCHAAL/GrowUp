@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ListView, FlatList, Alert, Button, Image } from
 import { v4 as uuidv4 } from 'uuid';
 import { NavigationContainer, useNavigation} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Header from './components/Header';
 import ListItem from './components/ListItem';
@@ -34,8 +35,6 @@ const HomeScreen = ({ route, navigation}) => {
       }
     }, [route.params?.completedItems]);
 
-  console.log(route.params?.completedItems)
-
   if (route.params.completedItems===null) {
     var gif = require('./gifs/grow_up_0_progress.gif');
   } else if (route.params.completedItems()===1) {
@@ -60,6 +59,28 @@ const HomeScreen = ({ route, navigation}) => {
     var gif = require('./gifs/grow_up_100_progress.gif');
   };
 
+
+  importData = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      console.log(keys);
+      const result = await AsyncStorage.multiGet(keys);
+      console.log(result);
+      return result
+      // console.log(result);
+      // return result.map(req => JSON.parse(req));
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const clearAllData = () => {
+    AsyncStorage.getAllKeys()
+        .then(keys => AsyncStorage.multiRemove(keys))
+        .then(() => alert('success'));
+  }
+
+  importData();
 
   return (
     <View style={styles.container}>

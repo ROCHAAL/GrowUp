@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ListView, FlatList, Alert, Button } from 'react
 import { v4 as uuidv4 } from 'uuid';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Header from './components/Header';
 import ListItem from './components/ListItem';
@@ -25,7 +26,9 @@ const TaskScreen = () => {
       Alert.alert('Error', 'please enter a task', {text: 'Ok'})
     } else {
       setItems(prevItems => {
-        return [{id: uuidv4(), text, completed: false}, ...prevItems];
+        var entry = {id: uuidv4(), text, completed: false}
+        storeData(entry)
+        return [entry, ...prevItems];
       });
     }
   }
@@ -40,6 +43,32 @@ const TaskScreen = () => {
       });
     });
   }
+
+  const storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value)
+      console.log(value.id)
+      await AsyncStorage.setItem(value.id, jsonValue)
+      console.log('store success')
+    } catch (e) {
+      console.log('save error')
+    }
+  }
+
+  importData = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      console.log(keys);
+      const result = await AsyncStorage.multiGet(keys);
+      console.log(result);
+      return result
+      // console.log(result);
+      // return result.map(req => JSON.parse(req));
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   const completedItems = () => {
     let completedItemsCounter = 0
     items.map((item) => {
@@ -56,6 +85,8 @@ const TaskScreen = () => {
       paddingTop: 60,
     },
   });
+
+  importData();
 
   return (
     <View style={styles.container}>
