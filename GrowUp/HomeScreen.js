@@ -27,30 +27,44 @@ const HomeScreen = ({ route, navigation}) => {
   //   })
   //   return './gifs/grow_up_' + ((completedItemsCounter * 100)/(items.length)).toString() + '_progress.gif'
   // };
-
   React.useEffect(() => {
-    if (route.params?.completedItems) {
-      console.log(gif)
-    }
-  }, [route.params?.completedItems]);
+      if (route.params?.completedItems) {
+        // Post updated, do something with `route.params.post`
+        // For example, send the post to the server
+      }
+    }, [route.params?.completedItems]);
 
-  let gif = route.params.completedItems()
+  console.log(route.params?.completedItems)
 
-  const gifFunction = () => {
-    if (route.params.completedItems() === 2) {
-      let gif = `./gifs/grow_up_20_progress.gif`
-    } else {
-      let gif = `./gifs/grow_up_0_progress.gif`
-    }
-    return gif
-  }
+  if (route.params.completedItems===null) {
+    var gif = require('./gifs/grow_up_0_progress.gif');
+  } else if (route.params.completedItems()===1) {
+    var gif = require('./gifs/grow_up_10_progress.gif');
+  } else if (route.params.completedItems()===2) {
+    var gif = require('./gifs/grow_up_20_progress.gif');
+  } else if (route.params.completedItems()===3){
+    var gif = require('./gifs/grow_up_30_progress.gif');
+  } else if (route.params.completedItems()===4){
+    var gif = require('./gifs/grow_up_40_progress.gif');
+  } else if (route.params.completedItems()===5){
+    var gif = require('./gifs/grow_up_50_progress.gif');
+  } else if (route.params.completedItems()===6){
+    var gif = require('./gifs/grow_up_60_progress.gif');
+  } else if (route.params.completedItems()===7){
+    var gif = require('./gifs/grow_up_70_progress.gif');
+  } else if (route.params.completedItems()===8){
+    var gif = require('./gifs/grow_up_80_progress.gif');
+  } else if (route.params.completedItems()===9){
+    var gif = require('./gifs/grow_up_90_progress.gif');
+  } else if (route.params.completedItems()>9){
+    var gif = require('./gifs/grow_up_100_progress.gif');
+  };
 
 
   return (
     <View style={styles.container}>
        <Header />
-       <Image source={require({gifFunction})} />
-       <Text>{gif}</Text>
+       <Image source={gif} />
        <Button
         title="Go to Tasks"
         onPress={() => navigation.navigate('Task')}
