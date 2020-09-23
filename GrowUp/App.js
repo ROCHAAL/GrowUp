@@ -22,14 +22,6 @@ const App = () => {
         <Stack.Screen name="Task" component={TaskScreen} />
       </Stack.Navigator>
     </NavigationContainer>
-    // <View style={styles.container}>
-    //   <Header />
-    //   <AddItem addItem={addItem} />
-    //   <FlatList
-    //     data={items}
-    //     renderItem={({item}) => <ListItem completeItem={completeItem} item={item} deleteItem={deleteItem} />}
-    //   />
-    // </View>
   );
 };
 

@@ -22,7 +22,7 @@ const TaskScreen = () => {
 
   const addItem = text => {
     if(!text) {
-      Alert.alert('Error', 'please enter a task', {text: 'Ok'})
+      Alert.alert('Error', 'Please enter a task', {text: 'Ok'})
     } else {
       setItems(prevItems => {
         return [{id: uuidv4(), text, completed: false}, ...prevItems];
@@ -53,8 +53,17 @@ const TaskScreen = () => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: 60,
+      backgroundColor: 'whitesmoke',
     },
+    button: {
+      marginBottom: 40,
+      alignItems: 'center',
+      bottom: 0,
+      backgroundColor: '#0e9307',
+      borderRadius: 100,
+      width: '25%',
+      left: 155,
+    }
   });
 
   return (
@@ -65,10 +74,13 @@ const TaskScreen = () => {
          data={items}
          renderItem={({item}) => <ListItem completeItem={completeItem} item={item} deleteItem={deleteItem} />}
        />
-       <Button
-        title="Go Home"
-        onPress={() => navigation.navigate('Home', {completedItems: completedItems})}
-      />
+       <View style={styles.button}>
+           <Button
+            color='white'
+            title="Go Home"
+            onPress={() => navigation.navigate('Home', {completedItems: completedItems})}
+          />
+        </View>
     </View>
   )
 }

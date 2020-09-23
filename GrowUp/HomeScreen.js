@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ListView, FlatList, Alert, Button, Image } from 'react-native';
+import { View, Text, StyleSheet, ListView, FlatList, Alert, Button, Image, ImageBackground } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 import { NavigationContainer, useNavigation} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -14,8 +14,22 @@ const HomeScreen = ({ route, navigation}) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: 60,
     },
+    image: {
+      flex: 1,
+      width: null,
+      height: null,
+      alignItems: 'center',
+      resizeMode: 'cover',
+    },
+    button: {
+      marginBottom: 40,
+      position: 'absolute',
+      bottom: 0,
+      backgroundColor: '#0e9307',
+      borderRadius: 100,
+      left: 17
+    }
   });
 
   // const progress = () => {
@@ -62,14 +76,19 @@ const HomeScreen = ({ route, navigation}) => {
 
 
   return (
-    <View style={styles.container}>
-       <Header />
-       <Image source={gif} />
-       <Button
-        title="Go to Tasks"
-        onPress={() => navigation.navigate('Task')}
-      />
-    </View>
+    <ImageBackground source={gif} style={styles.image}>
+      <View style={styles.container}>
+         <Header />
+         <View style={styles.button}>
+           <Button
+            color='white'
+            title="Go to Tasks"
+            onPress={() => navigation.navigate('Task')}
+            />
+         </View>
+      </View>
+    </ImageBackground>
+
   )
 
 

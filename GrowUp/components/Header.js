@@ -17,12 +17,15 @@ const styles = StyleSheet.create({
   header: {
     height: 60,
     padding: 15,
-    backgroundColor: 'green',
+    top: 15,
+    backgroundColor: '#0e9307',
+    borderRadius: 100,
   },
   text: {
     color: "white",
     fontSize: 23,
     textAlign: 'center',
+    fontFamily: 'Chalkduster'
   }
 });
 

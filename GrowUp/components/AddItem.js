@@ -27,7 +27,7 @@ const AddItem = ({addItem}) => {
           setText('');
         }}>
         <Text style={styles.buttonText}>
-          <Icon name="plus" size={20} /> Add Item
+          <Icon name="plus" size={20} /> Add Task
         </Text>
       </TouchableOpacity>
     </View>
@@ -38,18 +38,19 @@ const AddItem = ({addItem}) => {
 const styles = StyleSheet.create({
   input: {
     height: 60,
-    padding: 8,
-    fontSize: 16,
+    padding: 10,
+    top: 10,
+    fontSize: 18,
   },
   button: {
-    backgroundColor: 'green',
+    backgroundColor: '#0e9307',
     padding: 9,
     margin: 5,
   },
   buttonText: {
     color: 'white',
     fontSize: 20,
-    textAlign: 'center'
+    textAlign: 'center',
   }
 });
 
