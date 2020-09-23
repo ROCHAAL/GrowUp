@@ -51,6 +51,7 @@ const TaskScreen = () => {
       return prevItems.map(item => {
         if(id === item.id) {
           item.completed = !item.completed
+          console.log(item.completed)
         }
         return item;
       });
@@ -60,7 +61,6 @@ const TaskScreen = () => {
   const storeData = async (value) => {
     try {
       const jsonValue = JSON.stringify(value)
-      console.log(jsonValue)
       await AsyncStorage.setItem(value.id, jsonValue)
       console.log('store success')
     } catch (e) {
@@ -71,9 +71,7 @@ const TaskScreen = () => {
   importData = async () => {
     try {
       const keys = await AsyncStorage.getAllKeys();
-      console.log(keys);
       const result = await AsyncStorage.multiGet(keys);
-      console.log('look here')
       console.log(result);
       // result.map((entry) => setItems(prevItems => {
       //   return [entry, ...prevItems]
@@ -103,9 +101,6 @@ const TaskScreen = () => {
       paddingTop: 60,
     },
   });
-
-  console.log('important')
-  console.log(items);
 
   return (
     <View style={styles.container}>

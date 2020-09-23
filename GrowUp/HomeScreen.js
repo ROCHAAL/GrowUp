@@ -32,9 +32,10 @@ const HomeScreen = ({ route, navigation}) => {
       if (route.params?.completedItems) {
         // Post updated, do something with `route.params.post`
         // For example, send the post to the server
+        console.log('log1')
       }
     }, [route.params?.completedItems]);
-
+    console.log('log2')
   if (route.params.completedItems===null) {
     var gif = require('./gifs/grow_up_0_progress.gif');
   } else if (route.params.completedItems()===1) {
