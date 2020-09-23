@@ -32,31 +32,29 @@ const HomeScreen = ({ route, navigation}) => {
       if (route.params?.completedItems) {
         // Post updated, do something with `route.params.post`
         // For example, send the post to the server
-        console.log('log1')
       }
     }, [route.params?.completedItems]);
-    console.log('log2')
   if (route.params.completedItems===null) {
     var gif = require('./gifs/grow_up_0_progress.gif');
-  } else if (route.params.completedItems()===1) {
+  } else if (route.params.completedItems===1) {
     var gif = require('./gifs/grow_up_10_progress.gif');
-  } else if (route.params.completedItems()===2) {
+  } else if (route.params.completedItems===2) {
     var gif = require('./gifs/grow_up_20_progress.gif');
-  } else if (route.params.completedItems()===3){
+  } else if (route.params.completedItems===3){
     var gif = require('./gifs/grow_up_30_progress.gif');
-  } else if (route.params.completedItems()===4){
+  } else if (route.params.completedItems===4){
     var gif = require('./gifs/grow_up_40_progress.gif');
-  } else if (route.params.completedItems()===5){
+  } else if (route.params.completedItems===5){
     var gif = require('./gifs/grow_up_50_progress.gif');
-  } else if (route.params.completedItems()===6){
+  } else if (route.params.completedItems===6){
     var gif = require('./gifs/grow_up_60_progress.gif');
-  } else if (route.params.completedItems()===7){
+  } else if (route.params.completedItems===7){
     var gif = require('./gifs/grow_up_70_progress.gif');
-  } else if (route.params.completedItems()===8){
+  } else if (route.params.completedItems===8){
     var gif = require('./gifs/grow_up_80_progress.gif');
-  } else if (route.params.completedItems()===9){
+  } else if (route.params.completedItems===9){
     var gif = require('./gifs/grow_up_90_progress.gif');
-  } else if (route.params.completedItems()>9){
+  } else if (route.params.completedItems>9){
     var gif = require('./gifs/grow_up_100_progress.gif');
   };
 
@@ -64,7 +62,6 @@ const HomeScreen = ({ route, navigation}) => {
   importData = async () => {
     try {
       const keys = await AsyncStorage.getAllKeys();
-      console.log(keys);
       const result = await AsyncStorage.multiGet(keys);
       console.log(result);
       return result
@@ -83,6 +80,7 @@ const HomeScreen = ({ route, navigation}) => {
 
   // clearAllData();
   importData();
+  // console.log(items);
 
   return (
     <View style={styles.container}>

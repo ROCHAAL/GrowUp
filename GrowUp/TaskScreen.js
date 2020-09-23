@@ -48,15 +48,28 @@ const TaskScreen = () => {
 
   const completeItem = (id) => {
     setItems(prevItems => {
-      return prevItems.map(item => {
+      return prevItems.map((item) => {
         if(id === item.id) {
           item.completed = !item.completed
-          console.log(item.completed)
         }
+        changeData(id)
         return item;
       });
     });
-  }
+  };
+
+  const changeData = async (id) => {
+    try {
+      items.map((entry) => {
+        if (id === entry.id) {
+          entry.completed = !entry.completed
+          storeData(entry)
+        }
+      });
+    } catch (e) {
+      console.log(e)
+    }
+  };
 
   const storeData = async (value) => {
     try {
@@ -72,7 +85,6 @@ const TaskScreen = () => {
     try {
       const keys = await AsyncStorage.getAllKeys();
       const result = await AsyncStorage.multiGet(keys);
-      console.log(result);
       // result.map((entry) => setItems(prevItems => {
       //   return [entry, ...prevItems]
       // }));
@@ -102,6 +114,8 @@ const TaskScreen = () => {
     },
   });
 
+  console.log(items);
+
   return (
     <View style={styles.container}>
        <Header />
@@ -112,7 +126,7 @@ const TaskScreen = () => {
        />
        <Button
         title="Go Home"
-        onPress={() => navigation.navigate('Home', {completedItems: completedItems})}
+        onPress={() => navigation.navigate('Home', {completedItems: completedItems()})}
       />
     </View>
   )
