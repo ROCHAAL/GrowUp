@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ListView, FlatList, Alert, Button, Image, Image
 import { v4 as uuidv4 } from 'uuid';
 import { NavigationContainer, useNavigation} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Header from './components/Header';
 import ListItem from './components/ListItem';
@@ -47,33 +48,53 @@ const HomeScreen = ({ route, navigation}) => {
         // For example, send the post to the server
       }
     }, [route.params?.completedItems]);
-
-  console.log(route.params?.completedItems)
-
   if (route.params.completedItems===null) {
     var gif = require('./gifs/grow_up_0_progress.gif');
-  } else if (route.params.completedItems()===1) {
+  } else if (route.params.completedItems===1) {
     var gif = require('./gifs/grow_up_10_progress.gif');
-  } else if (route.params.completedItems()===2) {
+  } else if (route.params.completedItems===2) {
     var gif = require('./gifs/grow_up_20_progress.gif');
-  } else if (route.params.completedItems()===3){
+  } else if (route.params.completedItems===3){
     var gif = require('./gifs/grow_up_30_progress.gif');
-  } else if (route.params.completedItems()===4){
+  } else if (route.params.completedItems===4){
     var gif = require('./gifs/grow_up_40_progress.gif');
-  } else if (route.params.completedItems()===5){
+  } else if (route.params.completedItems===5){
     var gif = require('./gifs/grow_up_50_progress.gif');
-  } else if (route.params.completedItems()===6){
+  } else if (route.params.completedItems===6){
     var gif = require('./gifs/grow_up_60_progress.gif');
-  } else if (route.params.completedItems()===7){
+  } else if (route.params.completedItems===7){
     var gif = require('./gifs/grow_up_70_progress.gif');
-  } else if (route.params.completedItems()===8){
+  } else if (route.params.completedItems===8){
     var gif = require('./gifs/grow_up_80_progress.gif');
-  } else if (route.params.completedItems()===9){
+  } else if (route.params.completedItems===9){
     var gif = require('./gifs/grow_up_90_progress.gif');
-  } else if (route.params.completedItems()>9){
+  } else if (route.params.completedItems>9){
     var gif = require('./gifs/grow_up_100_progress.gif');
   };
 
+
+  importData = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      const result = await AsyncStorage.multiGet(keys);
+      console.log(result);
+      return result
+      // console.log(result);
+      // return result.map(req => JSON.parse(req));
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const clearAllData = () => {
+    AsyncStorage.getAllKeys()
+        .then(keys => AsyncStorage.multiRemove(keys))
+        .then(() => alert('success'));
+  }
+
+  // clearAllData();
+  importData();
+  // console.log(items);
 
   return (
     <ImageBackground source={gif} style={styles.image}>

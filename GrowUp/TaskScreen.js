@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ListView, FlatList, Alert, Button } from 'react
 import { v4 as uuidv4 } from 'uuid';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Header from './components/Header';
 import ListItem from './components/ListItem';
@@ -11,13 +12,26 @@ import AddItem from './components/AddItem';
 const TaskScreen = () => {
   const navigation = useNavigation()
 
-  const [items, setItems] = useState([
-  ]);
+  const [items, setItems] = useState([]);
+
+  React.useEffect(() => {
+    importData();
+  }, []);
 
   const deleteItem = (id) => {
+    removeEntry(id)
     setItems(prevItems => {
       return prevItems.filter(item => item.id != id);
     });
+  }
+
+  removeEntry = async (id) => {
+    try{
+      await AsyncStorage.removeItem(id)
+    } catch (e) {
+      console.log('delete error')
+      console.log(e)
+    }
   }
 
   const addItem = text => {
@@ -25,21 +39,64 @@ const TaskScreen = () => {
       Alert.alert('Error', 'Please enter a task', {text: 'Ok'})
     } else {
       setItems(prevItems => {
-        return [{id: uuidv4(), text, completed: false}, ...prevItems];
+        var entry = {id: uuidv4(), text, completed: false}
+        storeData(entry)
+        return [entry, ...prevItems];
       });
     }
   }
 
   const completeItem = (id) => {
     setItems(prevItems => {
-      return prevItems.map(item => {
+      return prevItems.map((item) => {
         if(id === item.id) {
           item.completed = !item.completed
         }
+        changeData(id)
         return item;
       });
     });
+  };
+
+  const changeData = async (id) => {
+    try {
+      items.map((entry) => {
+        if (id === entry.id) {
+          entry.completed = !entry.completed
+          storeData(entry)
+        }
+      });
+    } catch (e) {
+      console.log(e)
+    }
+  };
+
+  const storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem(value.id, jsonValue)
+      console.log('store success')
+    } catch (e) {
+      console.log('save error')
+    }
   }
+
+  importData = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      const result = await AsyncStorage.multiGet(keys);
+      // result.map((entry) => setItems(prevItems => {
+      //   return [entry, ...prevItems]
+      // }));
+      let items = result.map((entry) => { return JSON.parse(entry[1])})
+      setItems(items)
+      // console.log(result);
+      // return result.map(req => JSON.parse(req));
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   const completedItems = () => {
     let completedItemsCounter = 0
     items.map((item) => {
@@ -66,19 +123,21 @@ const TaskScreen = () => {
     }
   });
 
+  console.log(items);
+
   return (
     <View style={styles.container}>
        <Header />
        <AddItem addItem={addItem} />
        <FlatList
          data={items}
-         renderItem={({item}) => <ListItem completeItem={completeItem} item={item} deleteItem={deleteItem} />}
+         renderItem={({item}) => <ListItem key={item.id} completeItem={completeItem} item={item} deleteItem={deleteItem} />}
        />
        <View style={styles.button}>
            <Button
             color='white'
             title="Go Home"
-            onPress={() => navigation.navigate('Home', {completedItems: completedItems})}
+            onPress={() => navigation.navigate('Home', {completedItems: completedItems()})}
           />
         </View>
     </View>
