@@ -12,13 +12,26 @@ import AddItem from './components/AddItem';
 const TaskScreen = () => {
   const navigation = useNavigation()
 
-  const [items, setItems] = useState([
-  ]);
+  const [items, setItems] = useState([]);
+
+  React.useEffect(() => {
+    importData();
+  }, []);
 
   const deleteItem = (id) => {
+    removeEntry(id)
     setItems(prevItems => {
       return prevItems.filter(item => item.id != id);
     });
+  }
+
+  removeEntry = async (id) => {
+    try{
+      await AsyncStorage.removeItem(id)
+    } catch (e) {
+      console.log('delete error')
+      console.log(e)
+    }
   }
 
   const addItem = text => {
@@ -47,7 +60,7 @@ const TaskScreen = () => {
   const storeData = async (value) => {
     try {
       const jsonValue = JSON.stringify(value)
-      console.log(value.id)
+      console.log(jsonValue)
       await AsyncStorage.setItem(value.id, jsonValue)
       console.log('store success')
     } catch (e) {
@@ -60,8 +73,13 @@ const TaskScreen = () => {
       const keys = await AsyncStorage.getAllKeys();
       console.log(keys);
       const result = await AsyncStorage.multiGet(keys);
+      console.log('look here')
       console.log(result);
-      return result
+      // result.map((entry) => setItems(prevItems => {
+      //   return [entry, ...prevItems]
+      // }));
+      let items = result.map((entry) => { return JSON.parse(entry[1])})
+      setItems(items)
       // console.log(result);
       // return result.map(req => JSON.parse(req));
     } catch (error) {
@@ -86,7 +104,8 @@ const TaskScreen = () => {
     },
   });
 
-  importData();
+  console.log('important')
+  console.log(items);
 
   return (
     <View style={styles.container}>
@@ -94,7 +113,7 @@ const TaskScreen = () => {
        <AddItem addItem={addItem} />
        <FlatList
          data={items}
-         renderItem={({item}) => <ListItem completeItem={completeItem} item={item} deleteItem={deleteItem} />}
+         renderItem={({item}) => <ListItem key={item.id} completeItem={completeItem} item={item} deleteItem={deleteItem} />}
        />
        <Button
         title="Go Home"

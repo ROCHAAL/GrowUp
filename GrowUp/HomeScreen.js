@@ -80,6 +80,7 @@ const HomeScreen = ({ route, navigation}) => {
         .then(() => alert('success'));
   }
 
+  // clearAllData();
   importData();
 
   return (
