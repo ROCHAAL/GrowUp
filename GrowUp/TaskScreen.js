@@ -123,8 +123,6 @@ const TaskScreen = () => {
     }
   });
 
-  console.log(items);
-
   return (
     <View style={styles.container}>
        <Header />
