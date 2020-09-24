@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ListView, FlatList, Alert, Button } from 'react
 import { v4 as uuidv4 } from 'uuid';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import AsyncStorage from '@react-native-community/async-storage';
 
 import Header from './components/Header';
@@ -11,6 +12,7 @@ import AddNote from './components/AddNote';
 
 const NoteScreen = () => {
   const navigation = useNavigation()
+
 
   const [notes, setNotes] = useState([]);
 
@@ -68,8 +70,10 @@ const NoteScreen = () => {
             onPress={() => navigation.navigate('Task')}
           />
         </View>
+
     </View>
   )
 }
+
 
 export default NoteScreen;
