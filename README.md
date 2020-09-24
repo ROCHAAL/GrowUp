@@ -1,25 +1,48 @@
-# Personal Development App
-
+# GrowUp!
+ The app is a task list that tracks progress for self-development.
 ## Description
-* Web app
-* Personal development app
-* Habit tracker
-* Self-care tracker
-* Game-ify the progress tracker
-  * Different plants for different goals
-  * Overall plant
-* Mood/sleep tracker
+It is a ioS mobile app is run in React Native it tracks how many tasks a user completed and display progress via plant grows in a home screen.
 
-* Stretch goal: Reminders (appointments, meetings, etc)
-* Stretch goal: Building self-reflection aspect
+
 
 ## Tech Stack
-* REACT
-* JavaScript
+* React Native
 * Jest
-* ESLint
-* Heroku
+* Xcode 11
 
-## How to run app
+
+
+## How to run the program
+$ npm install
+$ cd ios
+$ pod install
+$ cd ..
+$ react-native run-ios
 
 ## How to run tests
+$ npm test
+
+
+  Use story
+
+  As a user
+  So that I can customize my schedule
+  I would like to be able to add a task to my schedule
+
+  As a user
+  So that I can see what tasks I have set myself
+  I would like to be able to view tasks
+
+
+  As a user
+  So I can remove an old task
+  I would like to be able to delete a task
+
+  As a User
+  So I know that I completed the task of the day
+  I would like to be able to mark a task as completed
+
+
+  As a user
+  So that I know how well I've been doing
+  I would like to be able to see how many of my tasks I have completed
