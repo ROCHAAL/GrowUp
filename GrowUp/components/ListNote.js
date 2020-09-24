@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
 const ListNote = ({note, deleteNote}) => {
+  const navigation = useNavigation()
   return (
     <TouchableOpacity style={styles.listNote}>
       <View style={styles.listNoteView}>
