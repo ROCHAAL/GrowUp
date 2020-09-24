@@ -50,6 +50,8 @@ const HomeScreen = ({ route, navigation}) => {
     }, [route.params?.completedItems]);
   if (route.params.completedItems===null) {
     var gif = require('./gifs/grow_up_0_progress.gif');
+  } else if (route.params.completedItems===0) {
+    var gif = require('./gifs/grow_up_0_progress.gif');
   } else if (route.params.completedItems===1) {
     var gif = require('./gifs/grow_up_10_progress.gif');
   } else if (route.params.completedItems===2) {
