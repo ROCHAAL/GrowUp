@@ -24,6 +24,7 @@ $ cd ..
 
 $ react-native run-ios
 ```
+
 ## How to run tests
 $ npm test
 
