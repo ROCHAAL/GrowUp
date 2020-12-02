@@ -9,9 +9,9 @@ It is a ioS mobile app is run in React Native it tracks how many tasks a user co
 * Jest
 * Xcode 11
 
-```
-# How to run the program
 
+# How to run the program
+```
 $ npm install
 
 $ cd ios
