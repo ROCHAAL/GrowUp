@@ -10,12 +10,11 @@ It is a ioS mobile app is run in React Native it tracks how many tasks a user co
 * Xcode 11
 
 ```
-## How to run the program
+# How to run the program
+
 $ npm install
 
-
 $ cd ios
-
 
 $ pod install
 
@@ -26,9 +25,10 @@ $ react-native run-ios
 ```
 
 ## How to run tests
+```
 $ npm test
 
-
+```
 
 ## User story
 
