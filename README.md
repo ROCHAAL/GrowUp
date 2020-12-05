@@ -32,6 +32,7 @@ $ npm test
 
 ## User story
 
+```
   As a user
   So that I can customise my schedule
   I would like to be able to add a task to my schedule.
@@ -50,8 +51,10 @@ $ npm test
   As a User
   So I know that I completed the task of the day
   I would like to be able to mark a task as completed.
-  
+
 
   As a user
   So that I know how well I've been doing
   I would like to be able to see how many of my tasks I have completed.
+
+  ```
